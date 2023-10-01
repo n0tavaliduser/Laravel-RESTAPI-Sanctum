@@ -1,0 +1,456 @@
+{
+	"info": {
+		"_postman_id": "9fa13d78-dbc5-45eb-b799-0187e23ee899",
+		"name": "IMP STUDIO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16180836"
+	},
+	"item": [
+		{
+			"name": "REGISTER",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8000/api/register?name=postman&email=postman@impstudio.com&password=abcd1234&password_confirmation=abcd1234",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "postman"
+						},
+						{
+							"key": "email",
+							"value": "postman@impstudio.com"
+						},
+						{
+							"key": "password",
+							"value": "abcd1234"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "abcd1234"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOGIN",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8000/api/login?email=stevano@impstudio.com&password=vfr4bgt5",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "stevano@impstudio.com"
+						},
+						{
+							"key": "password",
+							"value": "vfr4bgt5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TASK (CREATE)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5|GmRfmplYIq6pjberSI94B1FiIwi5wNgHNNHyEWEvb8e6977d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8000/api/task?title=new task&due_date=1999-09-09 11:23:42&description=new task description&m_category_task_id=2",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"task"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "new task"
+						},
+						{
+							"key": "due_date",
+							"value": "1999-09-09 11:23:42"
+						},
+						{
+							"key": "description",
+							"value": "new task description"
+						},
+						{
+							"key": "m_category_task_id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TASK (UPDATE BY ID)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5|GmRfmplYIq6pjberSI94B1FiIwi5wNgHNNHyEWEvb8e6977d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8000/api/task/3?title=test update lagi&due_date=1999-09-09 11:23:42&description=test update description&m_category_task_id=2",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"task",
+						"3"
+					],
+					"query": [
+						{
+							"key": "title",
+							"value": "test update lagi"
+						},
+						{
+							"key": "due_date",
+							"value": "1999-09-09 11:23:42"
+						},
+						{
+							"key": "description",
+							"value": "test update description"
+						},
+						{
+							"key": "m_category_task_id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TASK (READ ALL)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5|GmRfmplYIq6pjberSI94B1FiIwi5wNgHNNHyEWEvb8e6977d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8000/api/tasks",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TASK (READ BY ID)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5|GmRfmplYIq6pjberSI94B1FiIwi5wNgHNNHyEWEvb8e6977d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8000/api/task/22",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"task",
+						"22"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TASK (DELETE BY ID)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5|GmRfmplYIq6pjberSI94B1FiIwi5wNgHNNHyEWEvb8e6977d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8000/api/task/3",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"task",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "M CATEGORY (READ ALL)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5|GmRfmplYIq6pjberSI94B1FiIwi5wNgHNNHyEWEvb8e6977d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8000/api/m_category_task",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"m_category_task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "M CATEGORY (READ BY ID)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5|GmRfmplYIq6pjberSI94B1FiIwi5wNgHNNHyEWEvb8e6977d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8000/api/m_category_task/4",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"m_category_task",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "M CATEGORY (CREATE)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5|GmRfmplYIq6pjberSI94B1FiIwi5wNgHNNHyEWEvb8e6977d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8000/api/m_category_task?name=new category",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"m_category_task"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "new category"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "M CATEGORY (UPDATE BY ID)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5|GmRfmplYIq6pjberSI94B1FiIwi5wNgHNNHyEWEvb8e6977d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8000/api/m_category_task/9?name=update new category",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"m_category_task",
+						"9"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "update new category"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "M CATEGORY (DELETE BY ID)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5|GmRfmplYIq6pjberSI94B1FiIwi5wNgHNNHyEWEvb8e6977d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8000/api/m_category_task/8",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"m_category_task",
+						"8"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

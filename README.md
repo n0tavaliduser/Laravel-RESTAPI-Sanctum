@@ -1,66 +1,179 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# DB Transaction
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Project ini adalah hasil dari pembuatan CRUD dan API yang diamankan dengan Personal Token Access menggunakan Laravel Sanctum.
 
-## About Laravel
+## Tech Stack
+- Laravel Version 10.10
+- PHP Version 8.1
+- MySQL
+- Composer 2.6.3
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Additional Software for Testing API
+- postman
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Installation
+Jalankan setiap tahap kode dibawah ini pada terminal
+```bash
+    1. git clone git@github.com:n0tavaliduser/Laravel-RESTAPI-Sanctum.git <folder-name>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+    2. cd <folder-name>
 
-## Learning Laravel
+    3. composer install
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    4. cp .env.example .env
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    5. php artisan key:generate
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    6. php artisan migrate
 
-## Laravel Sponsors
+    7. php artisan db:seed
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+    8. php artisan serve
+```
+## POSTMAN
+```bash
+    1. open postman
 
-### Premium Partners
+    2. import new file
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+    3. select Postman/.editorconfig
+```
 
-## Contributing
+## API
+### Authentication API
+#### Register
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```http
+  POST /api/register
+```
 
-## Code of Conduct
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `name`      | `string` | **Required, String, Max:255**. Your Name |
+| `email`      | `string` | **Required, String, Email, Max:255**. Your Email |
+| `password`      | `string` | **Required, String, Min:8, Confirmed**. Your Password |
+| `password_confirmation`      | `string` | **Required**. Your Password Confirmation |
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+#### Login
 
-## Security Vulnerabilities
+```http
+  POST /api/login
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `email` | `string` | **Required**. Your Email |
+| `password` | `string` | **Required**. Your Password |
 
-## License
+### Task API
+### Create New Task :
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```http
+  POST /api/task
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `bearer token` | **Required**. Your API Key |
+| `title` | `char` | **Required, String, Max:200**. Task Title |
+| `description` | `longText` | **Required, String**. Task Description |
+| `m_category_task_id` | `bigInteger` | **Required, exists:m_category_task,id**. Task Category ID |
+
+### Get All Task :
+
+```http
+  GET /api/tasks
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `bearer token` | **Required**. Your API Key |
+
+### Get Task By ID :
+
+```http
+  GET /api/task/{id}
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `bearer token` | **Required**. Your API Key |
+| `id` | `string` | **Required**. Task ID |
+
+### Update Task By ID :
+
+```http
+  PATCH /api/task/{id}
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `bearer token` | **Required**. Your API Key |
+| `id` | `string` | **Required**. Task ID |
+
+### Delete Task By ID :
+
+```http
+  DELETE /api/task/{id}
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `bearer token` | **Required**. Your API Key |
+| `id` | `string` | **Required**. Task ID |
+
+### Master Data Category API :
+
+### Create Category :
+
+```http
+  POST /api/m_category_task
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `bearer token` | **Required**. Your API Key |
+| `name` | `string` | **Required, String, Max:50**. Category Name |
+
+### Get All Categories :
+
+```http
+  GET /api/m_category_task
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `bearer token` | **Required**. Your API Key |
+
+### Get Category By ID :
+
+```http
+  GET /api/m_category_task/{id}
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `bearer token` | **Required**. Your API Key |
+| `id` | `string` | **Required**. Category ID |
+
+### Update Category By ID :
+
+```http
+  PATCH /api/m_category_task/{id}
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `bearer token` | **Required**. Your API Key |
+| `id` | `string` | **Required**. Category ID |
+
+### Delete Category By ID :
+
+```http
+  DELETE /api/m_category_task/{id}
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `api_key` | `bearer token` | **Required**. Your API Key |
+| `id` | `string` | **Required**. Category ID |
